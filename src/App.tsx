@@ -9,6 +9,7 @@ const models = [
         name: "Linear Regression",
         lib: "scikit-learn",
         when: "Quan hệ tuyến tính, dự đoán số liên tục",
+        theory: "Linear Regression mô hình hoá quan hệ tuyến tính giữa biến độc lập và biến phụ thuộc. Nó học hệ số góc và hệ số chặn bằng cách tối thiểu hóa sai số bình phương, phù hợp cho dự đoán biến liên tục khi dữ liệu không quá phức tạp.",
         code: `import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
@@ -85,6 +86,7 @@ print("ElasticNet coef:", elastic.named_steps["model"].coef_)`,
         name: "XGBoost Regressor",
         lib: "xgboost",
         when: "Dữ liệu tabular, cần độ chính xác cao, thi Kaggle",
+        theory: "XGBoost là một thuật toán boosting hiệu suất cao, xây dựng dần dần các cây quyết định. Nó tối ưu hóa sai số theo hàm mất mát và regularization, phù hợp với dữ liệu phức tạp và có thể xử lý tương quan giữa đặc trưng tốt.",
         code: `import xgboost as xgb
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import mean_squared_error
@@ -135,6 +137,7 @@ print(feat_imp.sort_values(ascending=False))`,
         name: "Logistic Regression",
         lib: "scikit-learn",
         when: "Binary/multiclass classification, cần giải thích được, baseline nhanh",
+        theory: "Logistic Regression ước lượng xác suất cho từng lớp bằng hàm sigmoid/softmax. Nó là mô hình tuyến tính cho classification, dễ hiểu và thường dùng làm baseline khi dữ liệu không quá phức tạp.",
         code: `from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
@@ -176,6 +179,7 @@ print("Xác suất [ác tính, lành tính]:", proba)`,
         name: "Random Forest Classifier",
         lib: "scikit-learn",
         when: "Baseline mạnh, ít tuning, dữ liệu vừa-lớn, ít quan tâm tốc độ",
+        theory: "Random Forest là tập hợp nhiều cây quyết định độc lập, mỗi cây học trên bootstrap sample và chỉ xét một subset đặc trưng. Việc lấy trung bình dự đoán giúp giảm overfitting và tăng độ ổn định so với một cây đơn.",
         code: `from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -966,6 +970,18 @@ export default function MLCodeViewer() {
                   <span style={{ color: cat.color }}>💡 Dùng khi: </span>
                   {model.when}
                 </div>
+                {model.theory ? (
+                  <div style={{
+                    fontSize: "11px",
+                    color: "#8b949e",
+                    marginTop: "10px",
+                    lineHeight: "1.6",
+                    maxWidth: "720px",
+                  }}>
+                    <strong style={{ color: "#c9d1d9" }}>📘 Lý thuyết: </strong>
+                    {model.theory}
+                  </div>
+                ) : null}
               </div>
               <button
                 onClick={handleCopy}
