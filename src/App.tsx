@@ -775,7 +775,7 @@ const KEYWORDS = new Set([
   "yield","global","nonlocal","del","assert","is"
 ]);
 
-function TokenLine({ line }) {
+function TokenLine({ line }: { line: string }) {
   // If line is a comment
   if (line.trimStart().startsWith("#")) {
     return <span style={{ color: "#8b949e", fontStyle: "italic" }}>{line}</span>;
